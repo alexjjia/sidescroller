@@ -17,14 +17,14 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 panoramic = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
-		if (transform.position.y > 0.25) {
-			transform.position = new Vector3 (transform.position.x, 0.25f);
+		if (transform.position.y >= 0.25) { //ensures player doesn't exceed the 'ground' of the background.
+			transform.position = new Vector3 (transform.position.x, 0.2499f, -1);
 
-		} else if (transform.position.y < -4.25) {
-			transform.position = new Vector3 (transform.position.x, -4.25f);
+		} else if (transform.position.y <= -4.25) { //ensures player doesn't go under the 'ground of the background.
+			transform.position = new Vector3 (transform.position.x, -4.2499f, -1);
 		}
 		else {
-			transform.position += panoramic * Time.deltaTime * speed;
+			transform.position += panoramic * Time.deltaTime * speed; //movement.
 		}
 
 	}
